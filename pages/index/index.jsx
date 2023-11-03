@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.css'; 
-
+import DarkModeToggle from './../../components/DarkMode/darkmode'
 const Dashboard = () => {
   return (
     <div style={{ direction: 'rtl' }} className="dashboard">
-
+<DarkModeToggle/>
       {/* محتوای اصلی */}
       <main className="bg-gray-100 flex-grow p-6">
 
@@ -16,6 +16,7 @@ const Dashboard = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-lg font-medium mb-2">بازدیدکنندگان</h2>
             {/* Implement نمایش آمار بازدیدکنندگان */}
+     
           </div>
 
           {/* آمار فروش */}
