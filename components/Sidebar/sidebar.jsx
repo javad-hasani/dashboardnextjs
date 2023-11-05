@@ -6,6 +6,7 @@ const Sidebar = () => {
     <div className="flex flex-row-reverse h-screen font-sans text-gray-600">
       <aside className="bg-gray-800 text-white w-64">
         <div className="p-4">
+
           <h2 className="text-2xl font-bold mb-4 text-red-900">پنل مدیریت</h2>
           <ul>
             <li>
