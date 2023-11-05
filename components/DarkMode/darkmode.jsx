@@ -1,30 +1,49 @@
-"use client";
 
-import React, { useState } from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'; 
 
-function DarkModeToggle() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const DarkModeToggle = () => {
+  const [darkMode, setDarkMode] = useState(getInitialMode());
+  const [isLightMode, setIsLightMode] = useState(!darkMode); 
 
-  const toggleTheme = () => {
-    setIsDarkMode(prevMode => !prevMode);
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+      setIsLightMode(false); 
+    } else {
+      document.body.classList.remove('dark-mode');
+      setIsLightMode(true); 
+    }
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  function getInitialMode() {
+    const savedMode = JSON.parse(localStorage.getItem('darkMode'));
+    return savedMode || false;
+  }
+
+  const handleToggle = () => {
+    setDarkMode(prevMode => !prevMode);
   };
 
   return (
-    <div>
-      <label className="switch">
-        <input
-          className="switch__input"
-          type="checkbox"
-          role="switch"
-          name="dark"
-          checked={isDarkMode}
-          onChange={toggleTheme}
+    <div className="dark-mode-toggle">
+      <label htmlFor="dark-mode-toggle-switch" className="toggle-label">
+        <FontAwesomeIcon 
+          className={`famoon ${isLightMode ? 'faSun' : ''}`} 
+          icon={darkMode ? faSun : faMoon} 
         />
-        <div className={`switch__icon ${isDarkMode ? 'dark' : 'light'}`}></div>
+        <input
+          type="checkbox"
+          id="dark-mode-toggle-switch"
+          checked={darkMode}
+          onChange={handleToggle}
+        />
       </label>
-
     </div>
   );
-}
+};
 
 export default DarkModeToggle;
